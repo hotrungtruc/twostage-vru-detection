@@ -19,6 +19,8 @@ Thumbs.db
 # Heavy datasets and crops
 dataset/raw_dataset/
 dataset/preprocessed_dataset/crops/
+dataset/preprocessed_dataset/pushing/
+dataset/preprocessed_dataset/riding/
 *.zip
 *.tar
 *.gz
