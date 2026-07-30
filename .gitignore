@@ -1,0 +1,38 @@
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Heavy datasets and crops
+dataset/raw_dataset/
+dataset/preprocessed_dataset/crops/
+*.zip
+*.tar
+*.gz
+
+# Model weights and artifacts
+*.pt
+*.pth
+*.onnx
+*.engine
+*.bin
+output/
+runs/
+!DINOv3/models/weights/.gitkeep
+
+# Temporary files
+*.tmp
+*.log

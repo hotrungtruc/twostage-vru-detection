@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  tracker:
+    build: .
+    volumes:
+      # Map local directories to container so users can easily input videos and get output
+      - ./data:/app/data
+      - ./output:/app/output
+      - ./models:/app/models
+      - ./config:/app/config
+    
+    # -------------------------------------------------------------
+    # GPU SUPPORT (NVIDIA)
+    # If your host machine has an NVIDIA GPU and NVIDIA Container Toolkit installed,
+    # uncomment the 'deploy' section below to enable GPU acceleration.
+    # -------------------------------------------------------------
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]

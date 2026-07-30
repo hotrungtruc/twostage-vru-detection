@@ -1,0 +1,9 @@
+venv/
+data/
+models/
+output/
+__pycache__/
+.git/
+.pytest_cache/
+.vscode/
+*.pyc

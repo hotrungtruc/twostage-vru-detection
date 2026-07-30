@@ -1,0 +1,10 @@
+torch
+torchvision
+timm>=1.0.20
+opencv-python-headless
+numpy<2.0.0
+pillow
+tqdm
+matplotlib
+scikit-learn
+seaborn

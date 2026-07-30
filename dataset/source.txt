@@ -1,0 +1,8 @@
+1. CityPersons Dataset (pedestrian)
+2. KITTI Object Detection Dataset (pedestrian, cyclist) : python dataset/download_kitti.py --download_images
+3. curl -L "https://universe.roboflow.com/ds/5qI3xNJ3Qf?key=aXX1sskOrj" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip (stroller)
+4. curl -L "https://universe.roboflow.com/ds/4s3nveqS12?key=ytHnpYeoI1" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip (stroller)
+5. curl -L "https://universe.roboflow.com/ds/8VYNSklS7I?key=kjUGGZbBKn" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip (mixed)
+6. curl -L "https://universe.roboflow.com/ds/BHLLQMynYm?key=02ElkVvivb" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip (wheelchair)
+7. curl -L "https://universe.roboflow.com/ds/SRcgiSanGG?key=vkrG5326on" > roboflow.zip; unzip roboflow.zip; rm roboflow.zip (wheelchair)
+python dataset/download_roboflow.py
