@@ -87,6 +87,9 @@ Thumbs.db
 !/data/.gitkeep
 !/data/DOWNLOAD.md
 !/data/input.mp4
+!/data/test01.mp4
+!/data/test02.mp4
+!/data/test03.mp4
 /models/weights/*
 !/models/weights/.gitkeep
 !/models/weights/DOWNLOAD.md
@@ -100,4 +103,5 @@ Thumbs.db
 *.bak
 *_backup/
 !models/weights/dinov3_lightweight_classifier.pth
+!models/weights/dinov3_lightweight_classifier_v2_cls_patch.pth
 !models/weights/yolo26n.pt

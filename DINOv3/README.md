@@ -25,12 +25,19 @@ The following files are pre-packaged in `models/weights/`:
 
 | File | Purpose |
 |---|---|
-| `dinov3_lightweight_classifier.pth` | DINOv3 classifier checkpoint containing model weights and optimal threshold metadata (~83MB) |
-| `yolo26n.pt` | YOLOv8n detection weights |
+| `dinov3_lightweight_classifier_v2_cls_patch.pth` | Multi-token classifier checkpoint combining DINOv3 `[CLS]` token and average-pooled Patch tokens (~83MB) |
+| `dinov3_lightweight_classifier_v2_cls.pth` | DINOv3 `[CLS]` token classifier checkpoint (~83MB) |
+| `dinov3_lightweight_classifier_v2_patch.pth` | DINOv3 Patch tokens classifier checkpoint (~83MB) |
+| `dinov3_lightweight_classifier.pth` | Baseline DINOv3 classifier checkpoint (~83MB) |
+| `yolo26n.pt` / `yolo26s.pt` | YOLO detection weights |
 
 ### 2. Input Video
 Place your input video (`.mp4`, `.avi`, etc.) in the `data/` directory.  
-The default expected path is `data/input.mp4`.
+The repository provides 3 test videos for evaluation:
+- `data/test01.mp4` (Traffic scene 1 - dense environment)
+- `data/test02.mp4` (Traffic scene 2 - medium distance)
+- `data/test03.mp4` (Traffic scene 3 - complex behaviors)
+- `data/input.mp4` (Default pipeline test input)
 
 ---
 

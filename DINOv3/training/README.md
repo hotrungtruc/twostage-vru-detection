@@ -121,23 +121,27 @@ python train_v2_new.py \
 
 ---
 
-## Output Artifacts
+## Output Artifacts & Checkpoints
 Upon completion of the training lifecycle, all artifacts are persisted sequentially into the `output/` directory:
-1. `dinov3_lightweight_classifier_v2_new.pth`: Checkpoint file containing the classifier `model_state_dict`, `class_names`, `backbone_name`, and `optimal_threshold`.
-2. `training_stats_v2_new.csv`: Epoch-wise telemetry detailing Loss and Accuracy metrics.
-3. `training_report_v2_new.png`: A plotted visualization analyzing the Training and Validation performance curves.
-4. `classification_report_v2_new.txt`: Final precision, recall, and F1-score evaluation metrics.
-5. `confusion_matrix_v2_new.png`: Visual confusion matrix heatmap.
+1. `dinov3_lightweight_classifier_v2_cls_patch.pth`: Combined `[CLS]` token (384D) + Average-pooled Patch tokens (384D) feature classifier checkpoint (768D input vector). Provides highest classification fidelity for subtle actions (e.g. riding vs pushing).
+2. `dinov3_lightweight_classifier_v2_cls.pth`: Standard `[CLS]` token feature classifier checkpoint.
+3. `dinov3_lightweight_classifier_v2_patch.pth`: Spatial Patch tokens average-pooled classifier checkpoint.
+4. `training_stats_v2_new.csv`: Epoch-wise telemetry detailing Loss and Accuracy metrics.
+5. `training_report_v2_new.png`: A plotted visualization analyzing the Training and Validation performance curves.
+6. `classification_report_v2_new.txt`: Final precision, recall, and F1-score evaluation metrics.
+7. `confusion_matrix_v2_new.png`: Visual confusion matrix heatmap.
 
 ---
 
 ## Deploying Checkpoint to Inference
 
-By default, the inference pipeline expects the model weights to be located at `models/weights/dinov3_lightweight_classifier.pth` in the project root.
-
-To deploy your newly trained checkpoint for inference, navigate to the project root and execute the following commands to copy and rename the `.pth` file:
+To deploy the trained `cls_patch` checkpoint for inference, copy the checkpoint to `models/weights/`:
 ```bash
 mkdir -p models/weights
-cp training/v2_new/output/dinov3_lightweight_classifier_v2_new.pth \
-   models/weights/dinov3_lightweight_classifier.pth
+cp training/output/dinov3_lightweight_classifier_v2_cls_patch.pth \
+   models/weights/dinov3_lightweight_classifier_v2_cls_patch.pth
+```
+Inference can then be executed on any of the test videos (`test01.mp4`, `test02.mp4`, `test03.mp4`):
+```bash
+python main.py --input data/test01.mp4 --output output/test01_cls_patch.mp4 --weights models/weights/dinov3_lightweight_classifier_v2_cls_patch.pth
 ```
