@@ -1,0 +1,22 @@
+{
+    "pushing": {
+        "train": 484,
+        "valid": 75
+    },
+    "riding": {
+        "train": 1370,
+        "valid": 801
+    },
+    "walking": {
+        "train": 1271,
+        "valid": 335
+    },
+    "stroller": {
+        "train": 1500,
+        "valid": 400
+    },
+    "wheelchair": {
+        "train": 694,
+        "valid": 239
+    }
+}

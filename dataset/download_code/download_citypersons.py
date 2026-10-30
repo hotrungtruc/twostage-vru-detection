@@ -1,5 +1,6 @@
 import os
 import sys
+import ssl
 import zipfile
 import urllib.request
 from tqdm import tqdm
@@ -17,8 +18,17 @@ class DownloadProgressBar(tqdm):
 
 def download_url(url, output_path):
     print(f"[+] Đang tải dữ liệu từ: {url}")
-    with DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=os.path.basename(output_path)) as t:
-        urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
+    ctx = ssl._create_unverified_context()
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req, context=ctx) as resp, open(output_path, 'wb') as out_f:
+        total_size = int(resp.headers.get('content-length', 0))
+        with tqdm(total=total_size, unit='B', unit_scale=True, unit_divisor=1024, desc=os.path.basename(output_path)) as pbar:
+            while True:
+                buf = resp.read(8192)
+                if not buf:
+                    break
+                out_f.write(buf)
+                pbar.update(len(buf))
 
 def main():
     target_dir = "./dataset/Pedestrian_VRU"

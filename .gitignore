@@ -16,7 +16,7 @@ env/
 .DS_Store
 Thumbs.db
 
-# Heavy datasets and crops
+# Heavy raw datasets and temporary archives
 dataset/raw_dataset/
 dataset/preprocessed_dataset/crops/
 dataset/preprocessed_dataset/pushing/
@@ -26,14 +26,15 @@ dataset/preprocessed_dataset/riding/
 *.gz
 
 # Model weights and artifacts
-*.pt
-*.pth
 *.onnx
 *.engine
 *.bin
-output/
 runs/
+output/
 !DINOv3/models/weights/.gitkeep
+!DINOv3/models/weights/*.pth
+!DINOv3/models/weights/*.pt
+!DINOv3/training/v2_new/output/*
 
 # Temporary files
 *.tmp

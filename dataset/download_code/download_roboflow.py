@@ -71,8 +71,18 @@ def download_file(url, output_path, desc):
 
 def extract_zip(zip_path, extract_to):
     print(f"[+] Đang giải nén vào thư mục: {extract_to}...")
+    target_abs = os.path.abspath(extract_to)
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(extract_to)
+        for member in zip_ref.infolist():
+            rel_path = member.filename.replace('/', os.sep)
+            full_path = os.path.join(target_abs, rel_path)
+            long_path = '\\\\?\\' + full_path if os.name == 'nt' and not full_path.startswith('\\\\?\\') else full_path
+            if member.is_dir() or member.filename.endswith('/'):
+                os.makedirs(long_path.rstrip(os.sep), exist_ok=True)
+            else:
+                os.makedirs(os.path.dirname(long_path), exist_ok=True)
+                with zip_ref.open(member) as src, open(long_path, 'wb') as dst:
+                    dst.write(src.read())
     print(f"[✓] Giải nén thành công {os.path.basename(zip_path)}")
 
 def main():
